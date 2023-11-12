@@ -1,14 +1,30 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 
-const ImageBox = ({ title, url }) => {
+const ImageBox = ({ public_id, asset_id, title, url, navigation }) => {
   return (
-    <View style={styles.itemContainer}>
-      <Image
-        source={{ uri: url }}
-        style={styles.image}
-        PlaceholderContent={<ActivityIndicator />}
-      />
+    <View
+      style={styles.itemContainer}
+      onPress={() => {
+        navigation.navigate("Detail");
+      }}
+    >
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Detail", { public_id, title, url })}
+      >
+        <Image
+          source={{ uri: url }}
+          style={styles.image}
+          PlaceholderContent={<ActivityIndicator />}
+        />
+      </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
     </View>
   );
